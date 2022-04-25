@@ -1,11 +1,11 @@
 import { Text, StyleSheet } from 'react-native';
 
 
-import Colors from '../../constants/colors';
+import Colors from '../../constants/colors'; 
 
-const InstructionsText = ({ children }) => {
+const InstructionsText = ({ children, style }) => {
   return (
-  <Text style={styles.instructionsText}>{children}</Text>
+  <Text style={[styles.instructionsText, style]}>{children}</Text>
   );
 };
 
@@ -13,6 +13,7 @@ export default InstructionsText;
 
 const styles = StyleSheet.create({
   instructionsText: {
+    fontFamily: 'open-sans',
     color: Colors.accent500,
     fontSize: 24,
   },
