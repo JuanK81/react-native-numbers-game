@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 
+import Card from '../components/ui/Card';
+import InstructionsText from '../components/ui/InstructionsText'
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
@@ -19,13 +21,21 @@ const generateRandomNumber = (min, max, exclude) => {
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const GameScreen = ({ userNumber }) => {
+//*********//
+
+const GameScreen = ({ userNumber, onGameOver }) => {
   const initialGuess = generateRandomNumber(
-    minBoundary,
-    maxBoundary,
+    1,
+    100,
     userNumber
   );
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+        onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]);
 
   const nextGuessHandler = (direction) => {
     if (
@@ -42,7 +52,9 @@ const GameScreen = ({ userNumber }) => {
     } else {
       minBoundary = currentGuess + 1;
     }
+    console.log('currentguess', currentGuess); 
     console.log(minBoundary, maxBoundary);
+    
     const newRndNumber = generateRandomNumber(
       minBoundary,
       maxBoundary,
@@ -55,10 +67,8 @@ const GameScreen = ({ userNumber }) => {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-
-      {/* guess */}
-      <View>
-        <Text>Higher or lower?</Text>
+      <Card>
+        <InstructionsText>Higher or lower?</InstructionsText>
         <View>
           <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
             -
@@ -67,7 +77,7 @@ const GameScreen = ({ userNumber }) => {
             +
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>{/* Log Rounds */}</View>
     </View>
   );
