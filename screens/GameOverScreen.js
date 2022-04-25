@@ -6,7 +6,7 @@ import InstructionsText from '../components/ui/InstructionsText';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 
-const GameOverScreen = () => {
+const GameOverScreen = ({roundsNumber, userNumber, onStartNewGame}) => {
   return (
     <View style={styles.rootContainer}>
       <Title>Game Over!</Title>
@@ -19,11 +19,11 @@ const GameOverScreen = () => {
       
       <Card>
           <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlightText}>X</Text> rounds to
-        guess number <Text style={styles.highlightText}>Y</Text>
+        Your phone needed <Text style={styles.highlightText}>{roundsNumber}</Text> rounds to
+        guess number <Text style={styles.highlightText}>{userNumber}</Text>
       </Text>
         {/* <InstructionsText>lalalalala</InstructionsText> */}
-        <PrimaryButton onPress={console.log('holi')}>Start New Game</PrimaryButton>
+        <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
       </Card>
     </View>
   );
