@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Text, View, StyleSheet, Alert, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Alert, FlatList, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Card from '../components/ui/Card';
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+    alignItems: 'center'
   },
   isntructionsText: {
     marginBottom: 12,
