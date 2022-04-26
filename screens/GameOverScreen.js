@@ -1,27 +1,33 @@
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, useWindowDimensions } from 'react-native';
 
 import Card from '../components/ui/Card';
 import Colors from '../constants/colors';
-import InstructionsText from '../components/ui/InstructionsText';
+// import InstructionsText from '../components/ui/InstructionsText';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 
 const GameOverScreen = ({roundsNumber, userNumber, onStartNewGame}) => {
+
+  const { width, height } = useWindowDimensions();
+
   return (
     <View style={styles.rootContainer}>
       <Title>Game Over!</Title>
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={require('../assets/images/success.png')}
-        />
-      </View>
-      
+      {height > 380 && (
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            source={require('../assets/images/success.png')}
+          />
+        </View>
+      )}
+
       <Card>
-          <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlightText}>{roundsNumber}</Text> rounds to
-        guess number <Text style={styles.highlightText}>{userNumber}</Text>
-      </Text>
+        <Text style={styles.summaryText}>
+          Your phone needed{' '}
+          <Text style={styles.highlightText}>{roundsNumber}</Text> rounds to
+          guess number <Text style={styles.highlightText}>{userNumber}</Text>
+        </Text>
         {/* <InstructionsText>lalalalala</InstructionsText> */}
         <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
       </Card>

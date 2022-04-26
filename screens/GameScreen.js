@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Text, View, StyleSheet, Alert, FlatList, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Alert, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Card from '../components/ui/Card';
@@ -69,6 +69,8 @@ const GameScreen = ({ userNumber, onGameOver }) => {
   };
 
   const guessRoundsListLength = guessRounds.length;
+
+  
 
   return (
     <View style={styles.screen}>

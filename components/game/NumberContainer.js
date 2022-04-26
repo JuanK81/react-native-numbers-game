@@ -1,10 +1,21 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  useWindowDimensions,
+} from 'react-native';
 
 import Colors from '../../constants/colors';
 
 const NumberContainer = ({ children }) => {
+
+   const { width, height } = useWindowDimensions();
+
+   const marginBottomDistance = height < 380 ? 0 : 24;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { marginBottom: marginBottomDistance }]}>
       <Text style={styles.numberText}>{children}</Text>
     </View>
   );
