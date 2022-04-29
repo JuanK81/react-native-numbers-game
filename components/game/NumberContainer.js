@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import Colors from '../../constants/colors';
-
 const NumberContainer = ({ children }) => {
 
    const { width, height } = useWindowDimensions();
